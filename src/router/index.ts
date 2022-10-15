@@ -14,15 +14,24 @@ const router = createRouter({
       name: "photo",
       component: () => import("../views/PhotoView.vue"),
     },
-    // {
-    //   path: "/about",
-    //   name: "about",
-    //   // route level code-splitting
-    //   // this generates a separate chunk (About.[hash].js) for this route
-    //   // which is lazy-loaded when the route is visited.
-    //   component: () => import("../views/AboutView.vue"),
-    // },
+    {
+      path: "/about",
+      name: "about",
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import("../views/AboutView.vue"),
+      meta: {
+        title: "关于",
+      },
+    },
   ],
+});
+
+router.beforeEach((to, from, next) => {
+  const title = to.meta.title;
+  document.title = (title ? title + " - " : "") + "随机存取记忆体";
+  next();
 });
 
 export default router;

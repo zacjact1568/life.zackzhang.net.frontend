@@ -13,9 +13,25 @@ import {
   faCamera,
   faUser,
   faCameraRetro,
+  faEnvelope,
+  faLaptopCode,
+  faMicrochip,
+  faUserSecret,
 } from "@fortawesome/free-solid-svg-icons";
+import { faGithub, faAndroid } from "@fortawesome/free-brands-svg-icons";
 
-library.add(faMusic, faCamera, faUser, faCameraRetro);
+library.add(
+  faMusic,
+  faCamera,
+  faUser,
+  faCameraRetro,
+  faEnvelope,
+  faLaptopCode,
+  faMicrochip,
+  faUserSecret,
+  faGithub,
+  faAndroid
+);
 
 const app = createApp(App);
 

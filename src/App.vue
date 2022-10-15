@@ -18,9 +18,9 @@ const site_name = inject("site_name");
         <RouterLink to="/photo">
           <font-awesome-icon icon="fa-solid fa-camera" />
         </RouterLink>
-        <a href="https://life.zackzhang.net/about/">
+        <RouterLink to="/about">
           <font-awesome-icon icon="fa-solid fa-user" />
-        </a>
+        </RouterLink>
       </div>
     </div>
   </header>
