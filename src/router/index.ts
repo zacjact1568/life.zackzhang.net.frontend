@@ -10,6 +10,19 @@ const router = createRouter({
     //   component: HomeView,
     // },
     {
+      path: "/music",
+      name: "music",
+      component: () => import("../views/MusicMainView.vue"),
+      meta: {
+        title: "音乐",
+      },
+      props: (route) => {
+        // 启用了参数的情况下，组件模板不能有多个根节点，除非禁用 inheritAttrs
+        // https://stackoverflow.com/q/68803137
+        return { year: route.query.year };
+      },
+    },
+    {
       path: "/photo",
       name: "photo",
       component: () => import("../views/PhotoView.vue"),

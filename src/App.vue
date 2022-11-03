@@ -12,9 +12,9 @@ const site_name = inject("site_name");
         <span>{{ site_name }}</span>
       </a>
       <div>
-        <a href="https://life.zackzhang.net/music/">
+        <RouterLink to="/music">
           <font-awesome-icon icon="fa-solid fa-music" />
-        </a>
+        </RouterLink>
         <RouterLink to="/photo">
           <font-awesome-icon icon="fa-solid fa-camera" />
         </RouterLink>
