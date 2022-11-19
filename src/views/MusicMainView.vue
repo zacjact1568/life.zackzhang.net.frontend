@@ -146,9 +146,8 @@
           </div>
         </div>
       </div>
-      <!-- TODO replace link -->
       <router-link
-        to="/music"
+        to="/music/song/notes"
         id="rn-more"
         :style="{
           background:
@@ -174,6 +173,7 @@ import { useRoute } from "vue-router";
 import axios from "axios";
 import NumberDecoratedPageTitle from "../components/NumberDecoratedPageTitle.vue";
 import PageSectionTitle from "../components/PageSectionTitle.vue";
+import { convertRouteNumberQuery } from "@/router/utils";
 
 // 数据是否加载完成
 const ready = ref(false);
@@ -241,17 +241,6 @@ const recentNotes = computed(() => context.value.recent_notes);
 
 const route = useRoute();
 
-function convertRouteQueryYear(year: any) {
-  let y = undefined;
-  if (typeof year == "string") {
-    let yn = Number(year);
-    if (!isNaN(yn)) {
-      y = yn;
-    }
-  }
-  return y;
-}
-
 function requestData(year: number | undefined) {
   console.log("requestData: year = " + year);
   axios
@@ -270,7 +259,7 @@ function requestData(year: number | undefined) {
 onMounted(() => {
   // 初始化组件时从路由拿到 year 参数
   // 适用于从其他页面跳转过来，以及在网址栏输入的链接
-  let y = convertRouteQueryYear(route.query.year);
+  const y = convertRouteNumberQuery(route.query.year);
   console.log("Route query from onMounted: year = " + y);
   requestData(y);
 });
@@ -280,7 +269,7 @@ watch(
   (year) => {
     // 路由 year 参数变化时拿到的值
     // 适用于从本页面跳转到自身，只是 year 参数不同
-    let y = convertRouteQueryYear(year);
+    const y = convertRouteNumberQuery(year);
     console.log("Route query from watch: year = " + y);
     requestData(y);
   }

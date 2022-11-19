@@ -1,6 +1,11 @@
 <template>
   <div v-if="ready">
-    <PageTitle title-zh="关于" title-en="About" :color="photo.color" />
+    <PageTitle
+      title-zh="关于"
+      title-en="About"
+      :decoration-width="68"
+      :decoration-color="photo.color"
+    />
     <div id="motto">
       <a :href="motto.link" :title="motto.description">
         {{ motto.content }}

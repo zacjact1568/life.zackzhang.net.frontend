@@ -23,6 +23,17 @@ const router = createRouter({
       },
     },
     {
+      path: "/music/song/notes",
+      name: "music_song_notes",
+      component: () => import("../views/MusicSongNotesView.vue"),
+      meta: {
+        title: "听歌记录",
+      },
+      props: (route) => {
+        return { page: route.query.page };
+      },
+    },
+    {
       path: "/photo",
       name: "photo",
       component: () => import("../views/PhotoView.vue"),

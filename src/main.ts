@@ -17,6 +17,7 @@ import {
   faLaptopCode,
   faMicrochip,
   faUserSecret,
+  faClock,
 } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faAndroid } from "@fortawesome/free-brands-svg-icons";
 
@@ -30,7 +31,8 @@ library.add(
   faMicrochip,
   faUserSecret,
   faGithub,
-  faAndroid
+  faAndroid,
+  faClock
 );
 
 const app = createApp(App);

@@ -10,14 +10,19 @@
 import { computed } from "vue";
 
 const props = defineProps({
+  // 对象形式声明 props，可用于类型校验
   titleZh: String,
   titleEn: String,
-  color: String,
+  decorationWidth: Number,
+  decorationColor: String,
 });
 
-// 装饰条的颜色由服务端下发
 const decoration = computed(() => {
-  return { backgroundColor: props.color };
+  return {
+    width: props.decorationWidth + "px",
+    // 装饰条的颜色由服务端下发
+    backgroundColor: props.decorationColor,
+  };
 });
 </script>
 
@@ -34,9 +39,8 @@ const decoration = computed(() => {
 }
 
 #title > #decoration {
-  width: 68px;
   height: 5px;
-  margin: 1px auto;
+  margin: 2px auto;
   border-radius: 3px;
 }
 
