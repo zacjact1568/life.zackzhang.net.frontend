@@ -7,10 +7,10 @@ const site_name = inject("site_name");
 <template>
   <header>
     <div class="container">
-      <a href="https://life.zackzhang.net/">
+      <RouterLink to="/">
         <img src="/portrait.png" alt="Portrait" />
         <span>{{ site_name }}</span>
-      </a>
+      </RouterLink>
       <div>
         <RouterLink to="/music">
           <font-awesome-icon icon="fa-solid fa-music" />

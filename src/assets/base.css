@@ -93,17 +93,14 @@ body {
   color: var(--color-text-selection);
 }
 
-a,
-a.inline {
+a {
   text-decoration: none;
   transition: 0.4s;
-}
-
-a {
   color: var(--color-text-link);
 }
 
-a.inline {
+a.inline,
+.inline-inside a {
   color: var(--color-text-link-inline);
   border-bottom: 1px dashed var(--color-text-link-inline);
 }
@@ -112,7 +109,8 @@ a:hover {
   color: var(--color-text-link-hover);
 }
 
-a.inline:hover {
+a.inline:hover,
+.inline-inside a:hover {
   color: var(--color-text-link-hover-inline);
   border-bottom: 1px solid var(--color-text-link-hover-inline);
 }
