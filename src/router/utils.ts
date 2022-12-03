@@ -8,3 +8,15 @@ export function convertRouteNumberQuery(query: any) {
   }
   return q;
 }
+
+export function generatePostRouteParams(label: string | undefined) {
+  if (typeof label != "string") {
+    return undefined;
+  }
+  return {
+    name: "post",
+    params: {
+      label: label,
+    },
+  };
+}

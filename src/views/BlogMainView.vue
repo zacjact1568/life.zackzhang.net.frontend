@@ -1,12 +1,15 @@
 <template>
   <div v-if="ready">
     <div id="top-space"></div>
-    <div v-for="post in context.data" :key="post.link" class="post-item">
-      <a :href="post.link">{{ post.title }}</a>
-      <div class="date">
-        <font-awesome-icon icon="fa-solid fa-calendar-day" />
-        <time datetime="YYYY-MM-DD">{{ post.created_at }}</time>
-      </div>
+    <div v-for="post in context.data" :key="post.label" class="post-item">
+      <router-link :to="generatePostRouteParams(post.label)">
+        {{ post.title }}
+      </router-link>
+      <IconDate
+        icon="fa-solid fa-calendar-day"
+        :date="post.created_at"
+        :margin-top="8"
+      />
       <div v-html="post.excerpt" class="excerpt inline-inside"></div>
       <div v-if="post.images.length > 0" class="images">
         <img
@@ -17,9 +20,11 @@
           :alt="image.description"
         />
       </div>
-      <div v-if="post.tags.length > 0" class="tags">
-        <div v-for="tag in post.tags" :key="tag">{{ tag }}</div>
-      </div>
+      <BlogPostTag
+        v-if="post.tags.length > 0"
+        :tags="post.tags"
+        :margin-top="16"
+      />
     </div>
     <!-- TODO paging.digest 是条件表达式？-->
     <DigestPagination
@@ -40,7 +45,12 @@ import { computed, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import axios from "axios";
 import DigestPagination from "../components/DigestPagination.vue";
-import { convertRouteNumberQuery } from "@/router/utils";
+import IconDate from "../components/IconDate.vue";
+import BlogPostTag from "../components/BlogPostTag.vue";
+import {
+  convertRouteNumberQuery,
+  generatePostRouteParams,
+} from "@/router/utils";
 
 // 数据是否加载完成
 const ready = ref(false);
@@ -50,9 +60,9 @@ const context = ref({
   data: [
     {
       title: undefined,
+      label: undefined,
       excerpt: undefined,
       created_at: undefined,
-      link: undefined,
       images: [
         {
           link: undefined,
@@ -118,18 +128,6 @@ onMounted(() => {
   font-weight: 500;
 }
 
-.post-item > .date {
-  margin-top: 0.5rem;
-  font-family: "Barlow", sans-serif;
-  font-weight: 500;
-  font-size: 12px;
-  color: var(--color-text-50);
-}
-
-.post-item > .date > time {
-  margin-left: 4px;
-}
-
 .post-item > .excerpt {
   margin-top: 1rem;
   line-height: 1.8;
@@ -149,26 +147,6 @@ onMounted(() => {
   height: 100px;
   object-fit: cover;
   border-radius: 8px;
-}
-
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-top: 1rem;
-}
-
-.tags > div {
-  margin-right: 4px;
-  padding: 2px 8px;
-  font-size: 12px;
-  color: var(--color-text-40);
-  border-radius: 11px;
-  background-color: var(--color-10);
-}
-
-.tags > div::before {
-  content: "# ";
 }
 
 @media (max-width: 991px) {

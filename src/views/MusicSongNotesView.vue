@@ -6,10 +6,12 @@
       :decoration-width="108"
       :decoration-color="context.color"
     />
-    <div id="updated-at">
-      <font-awesome-icon icon="fa-solid fa-clock" />
-      <time datetime="YYYY-MM-DD">{{ context.updated_at }}</time>
-    </div>
+    <IconDate
+      icon="fa-solid fa-clock"
+      :date="context.updated_at"
+      :margin-right="10"
+      :align-end="true"
+    />
     <div v-for="song in context.data" :key="song.title" class="song">
       <div class="info">
         <div class="title">{{ song.title }}</div>
@@ -59,6 +61,7 @@ import { computed, ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import axios from "axios";
 import PageTitle from "../components/PageTitle.vue";
+import IconDate from "../components/IconDate.vue";
 import DigestPagination from "../components/DigestPagination.vue";
 import { convertRouteNumberQuery } from "@/router/utils";
 
@@ -132,21 +135,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-#updated-at {
-  text-align: end;
-  margin-right: 10px;
-  font-family: "Barlow", sans-serif;
-  font-weight: 500;
-  font-size: 12px;
-  color: var(--color-text-50);
-}
-
-#updated-at > time {
-  margin-left: 4px;
-}
-
-/* --- Note Item --- */
-
 .song {
   display: flex;
   justify-content: space-between;

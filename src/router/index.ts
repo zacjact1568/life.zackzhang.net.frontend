@@ -8,9 +8,11 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: BlogMainView,
-      props: (route) => {
-        return { page: route.query.page };
-      },
+    },
+    {
+      path: "/post/:label",
+      name: "post",
+      component: () => import("../views/BlogPostView.vue"),
     },
     {
       path: "/music",
@@ -19,11 +21,6 @@ const router = createRouter({
       meta: {
         title: "音乐",
       },
-      props: (route) => {
-        // 启用了参数的情况下，组件模板不能有多个根节点，除非禁用 inheritAttrs
-        // https://stackoverflow.com/q/68803137
-        return { year: route.query.year };
-      },
     },
     {
       path: "/music/song/notes",
@@ -31,9 +28,6 @@ const router = createRouter({
       component: () => import("../views/MusicSongNotesView.vue"),
       meta: {
         title: "听歌记录",
-      },
-      props: (route) => {
-        return { page: route.query.page };
       },
     },
     {

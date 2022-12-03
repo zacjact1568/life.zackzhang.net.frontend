@@ -86,14 +86,16 @@
           </a>
         </div>
       </div>
-      <div v-if="context.blog_post !== undefined || hasOtherYears" id="as-more">
-        <div v-if="context.blog_post !== undefined">
-          <!-- TODO replace link -->
-          <router-link to="/music" class="inline">
-            {{ context.blog_post.text }}
+      <div v-if="blogPost !== undefined || hasOtherYears" id="as-more">
+        <div v-if="blogPost !== undefined">
+          <router-link
+            :to="generatePostRouteParams(blogPost.label)"
+            class="inline"
+          >
+            {{ blogPost.text }}
           </router-link>
         </div>
-        <span v-if="context.blog_post !== undefined && hasOtherYears">
+        <span v-if="blogPost !== undefined && hasOtherYears">
           Or switch to
         </span>
         <div v-if="hasOtherYears" id="rn-more-other-years">
@@ -173,7 +175,10 @@ import { useRoute } from "vue-router";
 import axios from "axios";
 import NumberDecoratedPageTitle from "../components/NumberDecoratedPageTitle.vue";
 import PageSectionTitle from "../components/PageSectionTitle.vue";
-import { convertRouteNumberQuery } from "@/router/utils";
+import {
+  convertRouteNumberQuery,
+  generatePostRouteParams,
+} from "@/router/utils";
 
 // 数据是否加载完成
 const ready = ref(false);
@@ -217,7 +222,7 @@ const context = ref({
   },
   blog_post: {
     text: undefined,
-    link: undefined,
+    label: undefined,
   },
   recent_notes: [
     {
@@ -236,6 +241,8 @@ const primaryColor = computed(() => context.value.color.primary);
 const asSong = computed(() => context.value.song_of_this_year);
 
 const asEssentials = computed(() => context.value.essentials_of_this_year);
+
+const blogPost = computed(() => context.value.blog_post);
 
 const recentNotes = computed(() => context.value.recent_notes);
 
@@ -259,6 +266,8 @@ function requestData(year: number | undefined) {
 onMounted(() => {
   // 初始化组件时从路由拿到 year 参数
   // 适用于从其他页面跳转过来，以及在网址栏输入的链接
+  // 启用了参数的情况下，组件模板不能有多个根节点，除非禁用 inheritAttrs
+  // https://stackoverflow.com/q/68803137
   const y = convertRouteNumberQuery(route.query.year);
   console.log("Route query from onMounted: year = " + y);
   requestData(y);
