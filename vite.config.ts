@@ -19,4 +19,9 @@ export default defineConfig({
       "/api": "http://127.0.0.1:8000",
     },
   },
+  // 构建配置
+  build: {
+    outDir: "../life.zackzhang.net.frontend.deployment/dist",
+    emptyOutDir: true,
+  },
 });
