@@ -190,6 +190,7 @@ onMounted(() => {
 #photo > .photo {
   width: 100%;
   border-radius: 8px 8px 0 0;
+  vertical-align: middle;
 }
 
 #photo > .info {
