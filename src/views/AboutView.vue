@@ -13,7 +13,7 @@
     </div>
     <div id="photo">
       <img
-        src="/img/back.jpg"
+        src="/images/back.jpg"
         :alt="photo.title"
         :title="photo.title"
         class="photo"
@@ -67,10 +67,10 @@
     />
     <div id="supporters">
       <a href="https://www.djangoproject.com" class="django">
-        <img src="/img/django.svg" alt="Django" />
+        <img src="/images/django.svg" alt="Django" />
       </a>
       <a href="https://www.vultr.com/?ref=7260027" class="vultr">
-        <img src="/img/vultr.svg" alt="Vultr" />
+        <img src="/images/vultr.svg" alt="Vultr" />
       </a>
       <span>
         使用 Django Web Framework 搭建，托管于 Vultr 美国 Los Angeles 机房。

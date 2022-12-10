@@ -21,20 +21,20 @@
             :href="asSong.link.apple_music"
             class="as-enjoy-link as-enjoy-link-apple-music"
           >
-            <img src="/img/apple-music.svg" alt="Apple Music" />
+            <img src="/images/apple-music.svg" alt="Apple Music" />
           </a>
           <a
             :href="asSong.link.spotify"
             class="as-enjoy-link as-enjoy-link-spotify"
           >
-            <img src="/img/spotify.svg" alt="Spotify" />
+            <img src="/images/spotify.svg" alt="Spotify" />
           </a>
           <a
             v-if="asSong.link.youtube !== undefined"
             :href="asSong.link.youtube"
             class="as-enjoy-link as-enjoy-link-youtube"
           >
-            <img src="/img/youtube.svg" alt="YouTube" />
+            <img src="/images/youtube.svg" alt="YouTube" />
           </a>
         </div>
         <img
@@ -76,13 +76,13 @@
             :href="asEssentials.link.apple_music"
             class="as-enjoy-link as-enjoy-link-apple-music"
           >
-            <img src="/img/apple-music.svg" alt="Apple Music" />
+            <img src="/images/apple-music.svg" alt="Apple Music" />
           </a>
           <a
             :href="asEssentials.link.spotify"
             class="as-enjoy-link as-enjoy-link-spotify"
           >
-            <img src="/img/spotify.svg" alt="Spotify" />
+            <img src="/images/spotify.svg" alt="Spotify" />
           </a>
         </div>
       </div>

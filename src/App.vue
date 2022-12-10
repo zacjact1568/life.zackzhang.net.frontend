@@ -8,7 +8,7 @@ const site_name = inject("site_name");
   <header>
     <div class="container">
       <RouterLink to="/">
-        <img src="/img/portrait.png" alt="Portrait" />
+        <img src="/images/portrait.png" alt="Portrait" />
         <span>{{ site_name }}</span>
       </RouterLink>
       <div>
